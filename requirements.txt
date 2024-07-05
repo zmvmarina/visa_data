@@ -1,0 +1,9 @@
+fastapi
+jinja2
+uvicorn
+flower
+httpx
+fastapi-sqlalchemy
+pydantic
+alembic
+python-multipart

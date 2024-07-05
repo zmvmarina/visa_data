@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Form</title>
+    <link href="{{ url_for('static', path='/css/styles.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+        const { useState } = React;
+
+        function SurveyForm() {
+            const [name, setName] = useState('');
+            const [email, setEmail] = useState('');
+            const [age, setAge] = useState('');
+            const [feedback, setFeedback] = useState('');
+
+            const handleSubmit = async (e) => {
+                e.preventDefault();
+                const response = await fetch('http://localhost:8000/submit-survey', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams({
+                        name,
+                        email,
+                        age,
+                        feedback
+                    })
+                });
+                const result = await response.json();
+                alert(result.message);
+            };
+
+            return (
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label>
+                            Name:
+                            <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Email:
+                            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Age:
+                            <input type="number" value={age} onChange={(e) => setAge(e.target.value)} required />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Feedback:
+                            <textarea value={feedback} onChange={(e) => setFeedback(e.target.value)} required></textarea>
+                        </label>
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+            );
+        }
+
+        ReactDOM.render(<SurveyForm />, document.getElementById('root'));
+    </script>
+</body>
+</html>

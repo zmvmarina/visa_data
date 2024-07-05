@@ -1,0 +1,57 @@
+
+# Python files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.so
+
+# Environment variables
+.env
+visas/*
+
+# macOS files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# macOS files by resource forks
+._*
+
+# macOS files by Finder
+.Spotlight-V100
+.Trashes
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# FastAPI
+*.py[cod]
+*.pytest_cache/
+*.mypy_cache/
+*.tox/
+*.hypothesis/
+.cache/
+*.coverage
+.coverage.*
+.cache/
+dist/
+build/
+docs/_build/
+*.egg-info/
+htmlcov/
+.tox/
+
