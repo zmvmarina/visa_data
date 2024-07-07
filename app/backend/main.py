@@ -42,6 +42,7 @@ async def submit_survey(
 ):
     survey_data = SurveyData(name=name, email=email, age=age, feedback=feedback)
     # Process the survey data here (e.g., save to database)
+    print(survey_data)
     return templates.TemplateResponse(
         "index.html",
         {
